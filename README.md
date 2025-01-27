@@ -1,16 +1,18 @@
-# demo
+# Shared Tweets Social Network
 
-A new Flutter project.
+A collaborative social platform where users can post shared tweets with others. Built with Firebase Authentication, Firestore Database and Storage for seamless user management, data handling, and media storage.
 
-## Getting Started
+## App Features Overview:
 
-This project is a starting point for a Flutter application.
+### User Authentication:
 
-A few resources to get you started if this is your first Flutter project:
+Sign up and sign in using Firebase Email Authentication for secure and seamless access.
+Profile Customization:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Each user can upload a profile photo, which is securely stored in Firebase Cloud Storage.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Social Feed:
+
+Users can create and share tweets that appear on the home screen for all users to view.
+Tweets are stored in Firebase Firestore Database for real-time updates and scalability.
+This structure ensures a smooth user experience while leveraging Firebase's reliable backend services.
