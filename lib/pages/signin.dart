@@ -1,10 +1,8 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:demo/pages/home.dart';
 import 'package:demo/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import '../globals.dart';
 import 'signup.dart';
 
 class SignIn extends ConsumerStatefulWidget {
@@ -100,12 +98,10 @@ class _SignInState extends ConsumerState<SignIn> {
                               ref
                                   .read(userProvider.notifier)
                                   .login(_emailController.text);
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Home()));
                             } catch (e) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(e.toString())),
-                              );
+                              final SnackBar snackBar =
+                                  SnackBar(content: Text(e.toString()));
+                              snackbarKey.currentState?.showSnackBar(snackBar);
                             }
                           }
                         },

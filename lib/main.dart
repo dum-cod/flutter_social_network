@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'pages/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Social Media',
+      scaffoldMessengerKey: snackbarKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
@@ -36,11 +38,14 @@ class MyApp extends ConsumerWidget {
       home: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.hasError) {
+              return Center(child: Text("Something went wrong"));
+            } else if (snapshot.hasData) {
               ref.read(userProvider.notifier).login(snapshot.data!.email!);
               return Home();
+            } else {
+              return const SignIn();
             }
-            return const SignIn();
           }),
     );
   }
