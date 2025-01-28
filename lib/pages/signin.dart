@@ -103,6 +103,8 @@ class _SignInState extends ConsumerState<SignIn> {
                                   SnackBar(content: Text(e.toString()));
                               snackbarKey.currentState?.showSnackBar(snackBar);
                             }
+                            navigatorKey.currentState!
+                                .popUntil((route) => route.isFirst);
                           }
                         },
                         child: const Text("Log In",

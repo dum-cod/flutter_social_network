@@ -1,8 +1,9 @@
-import 'package:demo/pages/home.dart';
 import 'package:demo/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../globals.dart';
 
 class Signup extends ConsumerStatefulWidget {
   const Signup({super.key, required this.title});
@@ -101,13 +102,13 @@ class _SignupState extends ConsumerState<Signup> {
                                   .read(userProvider.notifier)
                                   .signUp(_emailController.text);
                               if (!mounted) return;
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Home()));
                             } catch (e) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(e.toString())),
-                              );
+                              final SnackBar snackBar =
+                                  SnackBar(content: Text(e.toString()));
+                              snackbarKey.currentState?.showSnackBar(snackBar);
                             }
+                            navigatorKey.currentState!
+                                .popUntil((route) => route.isFirst);
                           }
                         },
                         child: const Text("Sign Up",

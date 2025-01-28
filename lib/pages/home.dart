@@ -6,7 +6,6 @@ import 'package:demo/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../models/tweet.dart';
 
 class Home extends ConsumerWidget {
@@ -72,7 +71,7 @@ class Home extends ConsumerWidget {
           children: [
             Image.network(
               currentUser.user.profilePic,
-              scale: 0.1,
+              scale: 0.2,
             ),
             ListTile(
                 title: Text(
