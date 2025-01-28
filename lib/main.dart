@@ -1,3 +1,4 @@
+import 'globals.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,7 +6,6 @@ import 'pages/home.dart';
 import 'pages/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'globals.dart';
 import 'providers/user_provider.dart';
 
 void main() async {
@@ -23,9 +23,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Social Media',
-      scaffoldMessengerKey: snackbarKey,
+      scaffoldMessengerKey: messengerKey,
       navigatorKey: navigatorKey,
-      //onGenerateRoute: {},
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(

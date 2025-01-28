@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:demo/models/users.dart';
 
@@ -50,15 +49,17 @@ class UserNotifier extends StateNotifier<LocalUser> {
         .get();
 
     if (response.docs.isEmpty) {
-      final SnackBar snackBar =
-          SnackBar(content: Text("User $email not found"));
-      snackbarKey.currentState?.showSnackBar(snackBar);
+      // final SnackBar snackBar =
+      //     SnackBar(content: Text("User $email not found"));
+      // //snackbarKey.currentState?.showSnackBar(snackBar);
+      Utils.showSnackBar("User $email not found");
       return;
     }
     if (response.docs.length != 1) {
-      final SnackBar snackBar =
-          SnackBar(content: Text("Multiple users found for $email"));
-      snackbarKey.currentState?.showSnackBar(snackBar);
+      // final SnackBar snackBar =
+      //     SnackBar(content: Text("Multiple users found for $email"));
+      // snackbarKey.currentState?.showSnackBar(snackBar);
+      Utils.showSnackBar("Multiple users found for $email");
       return;
     }
 

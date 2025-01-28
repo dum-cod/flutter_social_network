@@ -71,7 +71,6 @@ class Home extends ConsumerWidget {
           children: [
             Image.network(
               currentUser.user.profilePic,
-              scale: 0.2,
             ),
             ListTile(
                 title: Text(

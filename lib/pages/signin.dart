@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../globals.dart';
+import 'forgot_password.dart';
 import 'signup.dart';
 
 class SignIn extends ConsumerStatefulWidget {
@@ -91,6 +92,12 @@ class _SignInState extends ConsumerState<SignIn> {
                     child: TextButton(
                         onPressed: () async {
                           if (_signInKey.currentState!.validate()) {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) => Center(
+                                      child: CircularProgressIndicator(),
+                                    ));
                             try {
                               await _auth.signInWithEmailAndPassword(
                                   email: _emailController.text,
@@ -99,9 +106,7 @@ class _SignInState extends ConsumerState<SignIn> {
                                   .read(userProvider.notifier)
                                   .login(_emailController.text);
                             } catch (e) {
-                              final SnackBar snackBar =
-                                  SnackBar(content: Text(e.toString()));
-                              snackbarKey.currentState?.showSnackBar(snackBar);
+                              Utils.showSnackBar(e.toString());
                             }
                             navigatorKey.currentState!
                                 .popUntil((route) => route.isFirst);
@@ -113,6 +118,21 @@ class _SignInState extends ConsumerState<SignIn> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold))),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                      child: Text(
+                        "Forgot password?",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ForgotPassword()));
+                      }),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(

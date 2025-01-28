@@ -94,6 +94,12 @@ class _SignupState extends ConsumerState<Signup> {
                     child: TextButton(
                         onPressed: () async {
                           if (_signUpKey.currentState!.validate()) {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) => Center(
+                                      child: CircularProgressIndicator(),
+                                    ));
                             try {
                               await _auth.createUserWithEmailAndPassword(
                                   email: _emailController.text,
@@ -103,9 +109,7 @@ class _SignupState extends ConsumerState<Signup> {
                                   .signUp(_emailController.text);
                               if (!mounted) return;
                             } catch (e) {
-                              final SnackBar snackBar =
-                                  SnackBar(content: Text(e.toString()));
-                              snackbarKey.currentState?.showSnackBar(snackBar);
+                              Utils.showSnackBar(e.toString());
                             }
                             navigatorKey.currentState!
                                 .popUntil((route) => route.isFirst);
