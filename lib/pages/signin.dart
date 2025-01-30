@@ -31,8 +31,8 @@ class _SignInState extends ConsumerState<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image(
-                    image: AssetImage("assets/social_media_icons_set.png"),
-                    width: 350,
+                    image: AssetImage("assets/tweeter_logo.png"),
+                    width: 200,
                   ),
                   SizedBox(height: 20),
                   const Text("Log in to Social Media",
@@ -87,7 +87,7 @@ class _SignInState extends ConsumerState<SignIn> {
                   Container(
                     width: 250,
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color(0xFF28a9e0),
                         borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                         onPressed: () async {
@@ -125,7 +125,7 @@ class _SignInState extends ConsumerState<SignIn> {
                       child: Text(
                         "Forgot password?",
                         style: TextStyle(
-                            color: Colors.blue,
+                            color: Color(0xFF28a9e0),
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
@@ -142,7 +142,7 @@ class _SignInState extends ConsumerState<SignIn> {
                       },
                       child: Text("Don't have an account? Sign up",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Color(0xFF28a9e0),
                               fontSize: 16,
                               fontWeight: FontWeight.bold))),
                 ])));

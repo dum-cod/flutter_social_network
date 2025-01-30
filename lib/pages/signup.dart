@@ -2,7 +2,6 @@ import 'package:demo/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../globals.dart';
 
 class Signup extends ConsumerStatefulWidget {
@@ -16,9 +15,10 @@ class Signup extends ConsumerStatefulWidget {
 
 class _SignupState extends ConsumerState<Signup> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final GlobalKey<FormState> _signUpKey = GlobalKey<FormState>();
 
   RegExp emailValid = RegExp(
@@ -33,8 +33,8 @@ class _SignupState extends ConsumerState<Signup> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image(
-                    image: AssetImage("assets/social_media_icons_set.png"),
-                    width: 350,
+                    image: AssetImage("assets/tweeter_logo.png"),
+                    width: 200,
                   ),
                   SizedBox(height: 20),
                   const Text("Sign up to Social Media",
@@ -87,9 +87,32 @@ class _SignupState extends ConsumerState<Signup> {
                         }),
                   ),
                   Container(
+                    margin: EdgeInsets.fromLTRB(15, 0, 15, 15),
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(30)),
+                    child: TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                            hintText: "Confirm your Password",
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 20)),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please confirm your Password";
+                          } else if (value != _passwordController.text) {
+                            return "Passwords do not match";
+                          }
+                          return null;
+                        }),
+                  ),
+                  Container(
                     width: 250,
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color(0xFF28a9e0),
                         borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                         onPressed: () async {
@@ -127,7 +150,7 @@ class _SignupState extends ConsumerState<Signup> {
                       },
                       child: Text("Already have an account? Sign in",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Color(0xFF28a9e0),
                               fontSize: 16,
                               fontWeight: FontWeight.bold))),
                 ])));

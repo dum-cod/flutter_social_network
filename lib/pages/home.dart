@@ -103,6 +103,8 @@ class Home extends ConsumerWidget {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CreateTweet()));
         },
+        foregroundColor: Colors.white,
+        backgroundColor: const Color(0xFF28a9e0),
         child: const Icon(Icons.add),
       ),
     );
